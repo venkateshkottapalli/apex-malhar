@@ -32,6 +32,7 @@ import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.CsvMapReader;
 import org.supercsv.prefs.CsvPreference;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.classification.InterfaceStability;
 
@@ -81,11 +82,11 @@ public class CsvParser extends Parser<byte[], KeyValPair<String, String>>
   /**
    * Bean Reader to read delimited records
    */
-  private transient CsvBeanReader csvBeanReader;
+  protected transient CsvBeanReader csvBeanReader;
   /**
    * Reader used by csvMapReader and csvBeanReader
    */
-  private transient ReusableStringReader csvStringReader;
+  protected transient ReusableStringReader csvStringReader;
   /**
    * Contents of the schema.Schema is specified in a json format as per
    * {@link DelimitedSchema}
@@ -95,20 +96,20 @@ public class CsvParser extends Parser<byte[], KeyValPair<String, String>>
   /**
    * Schema is read into this object to access fields
    */
-  private transient DelimitedSchema delimitedParserSchema;
+  protected transient DelimitedSchema delimitedParserSchema;
   /**
    * Cell processors are an integral part of reading and writing with Super CSV
    * they automate the data type conversions, and enforce constraints.
    */
-  private transient CellProcessor[] processors;
+  protected transient CellProcessor[] processors;
   /**
    * Names of all the fields in the same order of incoming records
    */
-  private transient String[] nameMapping;
+  protected transient String[] nameMapping;
   /**
    * header-this will be delimiter separated string of field names
    */
-  private transient String header;
+  protected transient String header;
   /**
    * Reading preferences that are passed through schema
    */
@@ -200,7 +201,7 @@ public class CsvParser extends Parser<byte[], KeyValPair<String, String>>
   /**
    * Returns array of cellprocessors, one for each field
    */
-  private CellProcessor[] getProcessor(List<Field> fields)
+  protected CellProcessor[] getProcessor(List<Field> fields)
   {
     CellProcessor[] processor = new CellProcessor[fields.size()];
     int fieldCount = 0;

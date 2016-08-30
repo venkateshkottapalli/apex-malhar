@@ -1,0 +1,23 @@
+{
+    "separator": ",",
+    "quoteChar":"\"",
+    "fields": [
+        {
+            "name": "date",
+            "type": "Date",
+            "constraints": {
+                "required": "true",
+                "format": "yyyy:MM:dd:hh:mm:ss"
+            }
+        },
+        {
+            "name": "id",
+            "type": "Integer"
+        },
+        {
+            "name": "message",
+            "type": "String"
+
+        }
+    ]
+}
